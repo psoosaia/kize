@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rejoins-moi sur Kizé</title>
+<style>
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: linear-gradient(160deg, #1A0B40, #0E0628 60%, #160A36); color: #fff; }
+  .card { width: min(420px, 90vw); background: #24145E; border: 1px solid #3A2A8A; border-radius: 26px; padding: 28px 22px; text-align: center; }
+  h1 { font-size: 48px; margin: 0; color: #FFD60A; text-shadow: 0 0 18px #FF2E88; }
+  .tag { color: #B9A8FF; margin: 4px 0 20px; }
+  .code { font-size: 40px; letter-spacing: 6px; font-weight: 800; color: #FFD60A; background: #0B0620; border-radius: 16px; padding: 12px; margin: 10px 0 18px; }
+  a.btn { display: block; background: #FF2E88; color: #fff; text-decoration: none; font-weight: 800; font-size: 18px; padding: 15px; border-radius: 16px; box-shadow: 0 5px 0 #B0145A; margin-bottom: 14px; }
+  p { color: #CFC4FF; font-size: 14px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Kizé</h1>
+  <div class="tag">Kizé ? Prouve-le.</div>
+  <p>Un ami t'invite à l'affronter en duel de quiz ⚔️</p>
+  <div class="code" id="code">······</div>
+  <a class="btn" id="open" href="#">Ouvrir dans Kizé</a>
+  <p>Si rien ne se passe : ouvre Kizé → onglet <b>Amis 👥</b> → tape ce code dans « Code d'un ami ».</p>
+  <p>Pas encore Kizé ? Le jeu arrive bientôt sur Google Play.</p>
+</div>
+<script>
+  var c = (new URLSearchParams(location.search).get('c') || '').replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 6);
+  if (c) {
+    document.getElementById('code').textContent = c;
+    var link = 'kize://ami/' + c;
+    document.getElementById('open').href = link;
+    setTimeout(function () { location.href = link; }, 400);
+  } else {
+    document.getElementById('open').style.display = 'none';
+  }
+</script>
+</body>
+</html>
